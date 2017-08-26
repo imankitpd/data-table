@@ -1,0 +1,63 @@
+[
+    {   
+        "id": 1,
+        "item": "milk",
+        "price": 20,
+        "quantity": 50,
+        "unit": "1/2 Lt"
+    }, {   
+        "id": 2,
+        "item": "chocolate",
+        "price": 20,
+        "quantity": 50,
+        "unit": "1/2 Lt"
+    }, {   
+        "id": 3,
+        "item": "face wash",
+        "price": 80,
+        "quantity": 45,
+        "unit": "250 gm"
+    }, {   
+        "id": 4,
+        "item": "sugar",
+        "price": 100,
+        "quantity": 80,
+        "unit": "1 kg"
+    }, {   
+        "id": 5,
+        "item": "coffee",
+        "price": 150,
+        "quantity": 20,
+        "unit": "100 gm"
+    }, {   
+        "id": 6,
+        "item": "bread",
+        "price": 30,
+        "quantity": 50,
+        "unit": "1/2 Lt"
+    }, {   
+        "id": 7,
+        "item": "cake",
+        "price": 25,
+        "quantity": 50,
+        "unit": "250 gm"
+    }, {   
+        "id": 8,
+        "item": "shampoo",
+        "price": 95,
+        "quantity": 25,
+        "unit": "250 gm"
+    }, {   
+        "id": 9,
+        "item": "cream",
+        "price": 120,
+        "quantity": 20,
+        "unit": "100 gm"
+    }, {   
+        "id": 10,
+        "item": "hair oil",
+        "price": 60,
+        "quantity": 80,
+        "unit": "100 ml"
+    }
+]
