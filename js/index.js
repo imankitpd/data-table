@@ -1,24 +1,40 @@
 (function ($) {
-    var $container = $("#container"),
+    var titlesHead = {
+        "id": "#",
+        "item": "Item",
+        "price": "Price",
+        "quantity": "Quantity",
+        "unit": "Unit"
+    };
+    var selectedKey = null,
+        selectedType = null,
+        itemsData = [],
+        $container = $("#container"),
         $table = $("<table>/table").addClass("table table-inverse"),
-        $tr = $("<tr></tr>");
-    $tbody = $("<tbody></tbody>");
-    $thead = $("<thead></thead>");
+        $tr = $("<tr></tr>"),
+        $tbody = $("<tbody></tbody>"),
+        $thead = $("<thead></thead>");
 
-    $("<th></th>").text("#").appendTo($tr);
-    $("<th></th>").text("Item").appendTo($tr);
-    $("<th></th>").text("Price").appendTo($tr);
-    $("<th></th>").text("Quantity").appendTo($tr);
-    $("<th></th>").text("Unit").appendTo($tr);
+    // Get titles in dropdown menu
+    for (var key in titlesHead) {
+        $("<th></th>").text(titlesHead[key]).appendTo($tr);
+        if (titlesHead[key] !== "#") {
+            $("<a></a>").text("Sort by " + titlesHead[key])
+                .addClass("dropdown-item").data("key", key)
+                .attr({ "href": "#", "id": "drp-" + key })
+                .click(function () {
+                    $("#sort_menu").text(this.text);
+                    selectedKey = $(this).data("key");
+                }).appendTo("#items-menu");
+        }
+    };
 
     $tr.appendTo($thead);
     $thead.appendTo($table);
 
-    //     $p = $("<p></p>");
-    // $("<span></span>").addClass("my-class").attr({"name": "yogesh", "count":23}).css("color", "#EE23FF").text("Yogesh").appendTo($p);
-    // $p.appendTo($container);
-
-    $.getJSON("data.json", function (items) {
+    function createDataTable(items) {
+        console.log(items);
+        $tbody.empty();
         if (items.length > 0) {
             for (var i = 0; i < items.length; i++) {
                 $tr = $("<tr></tr>");
@@ -37,6 +53,42 @@
             $tr.appendTo($tbody);
         }
         $tbody.appendTo($table);
+    }
+    // Get JSON data from "data.json"
+    $.getJSON("data.json", function (items) {
+        itemsData = items;
+        createDataTable(items);
     });
     $table.appendTo($container);
+
+    // Sorting Button function
+    $(".sort-type").click(function () {
+        $("#sort_type_btn").text($(this).text());
+        selectedType = $(this).data("key");
+    });
+
+    $("#sort_btn").click(function () {
+
+        console.log(selectedKey);
+        console.log(selectedType);
+
+        if (selectedKey !== null && selectedType !== null ) {
+
+            itemsData.sort(function (a, b) {
+
+                if (selectedType === 0) {
+
+                    return a[selectedKey] > b[selectedKey];
+
+                } else if (selectedType === 1) {
+
+                    return b[selectedKey] > a[selectedKey];
+                }
+            });
+            
+            createDataTable(itemsData);
+            
+        }
+    });
+
 })(jQuery);
